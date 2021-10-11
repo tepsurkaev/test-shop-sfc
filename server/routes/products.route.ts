@@ -6,5 +6,6 @@ const router = Router();
 router.post('/', roleMiddleware, productsController.createProduct);
 router.get('/products', productsController.getAllProducts);
 router.get('/:id', productsController.getProductById);
+router.delete('/:id', roleMiddleware, productsController.deleteProduct);
 
 module.exports = router;

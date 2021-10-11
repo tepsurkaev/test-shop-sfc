@@ -16,12 +16,15 @@
   justify-content: space-between;
 }
 .adminItems {
-  font-size: 26px;
-  width: 250px;
+  font-size: 22px;
+  width: 310px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .personIcon {
+  cursor: pointer;
+}
+.cardIcon {
   cursor: pointer;
 }

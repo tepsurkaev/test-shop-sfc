@@ -3,7 +3,9 @@ import Product from './Product';
 
 function Products() {
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+    <div
+      style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}
+    >
       <Product />
     </div>
   );

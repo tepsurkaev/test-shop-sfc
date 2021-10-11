@@ -20,6 +20,15 @@ class ProductsController {
     const product = await productModel.Product.findByPk(id);
     return res.json(product);
   }
+
+  async deleteProduct(req: any, res: any) {
+    const { id } = req.params;
+    const deletingProduct = await productModel.Product.findByPk(id);
+    await productModel.Product.destroy({
+      where: { id },
+    });
+    return res.json(deletingProduct);
+  }
 }
 
 module.exports = new ProductsController();

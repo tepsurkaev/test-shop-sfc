@@ -13,7 +13,7 @@ function AuthorizedUser() {
     <header className={headerModule.header}>
       <div className={headerModule.title}>Шапка сайта</div>
       <div className={headerModule.userItems}>
-        <ShoppingCartIcon />
+        <ShoppingCartIcon className={headerModule.cardIcon} />
         <div className={headerModule.personIcon}>
           <PersonIcon fontSize="large" />
         </div>
