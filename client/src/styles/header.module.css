@@ -1,0 +1,27 @@
+.header {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid;
+}
+.title {
+  font-size: 26px;
+}
+.userItems {
+  width: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.adminItems {
+  font-size: 26px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.personIcon {
+  cursor: pointer;
+}
