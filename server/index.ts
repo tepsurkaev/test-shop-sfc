@@ -1,8 +1,9 @@
-const express = require('express');
-import sequelize from './config';
-const models = require('./models/models');
-const cors = require('cors');
-const indexRoute = require('./routes/index');
+const express = require("express");
+const sequelize = require("./config");
+const models = require("./models/models");
+const cors = require("cors");
+import path = require("path");
+const indexRouter = require("./routes/index");
 
 const PORT = process.env.PORT;
 
@@ -11,7 +12,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api', indexRoute);
+app.use(express.static(path.resolve(__dirname, "static")));
+app.use(express.static(path.resolve(__dirname, "client", 'build')));
+app.use("/api", indexRouter);
+
+
+app.get("*", (req: any, res: any) => {
+  res.sendFile(path.resolve(__dirname, "..", "client", "build", "index.html"));
+});
 
 const start = async () => {
   try {

@@ -1,18 +1,9 @@
-const basketModel = require('../models/models');
+import { Basket } from "../models/models";
 
 class BasketsController {
-  async getBasket(req: any, res: any) {
-    const { id } = req.params;
-    const userId = req.user;
+  async getBasket(req: any, res: any) {}
 
-    const basket = await basketModel.Basket.findByPk({ id });
-
-    if (basket.userId === userId.id) {
-      return res.json(basket);
-    } else {
-      return res.status(401).json('Не авторизован');
-    }
-  }
+  async addProductInBasket(req: any, res: any) {}
 }
 
 module.exports = new BasketsController();

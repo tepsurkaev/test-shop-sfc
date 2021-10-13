@@ -1,26 +1,27 @@
-const userModel = require('../models/models');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+import { User, Basket } from "../models/models";
+
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 class UsersController {
   async registration(req: any, res: any) {
     const { email, password, role, products } = req.body;
 
     if (!email || !password) {
-      return res.status(400).json('Некорректный эмайл или пароль');
+      return res.status(400).json("Некорректный эмайл или пароль");
     }
 
-    const candidate = await userModel.User.findOne({ where: { email } });
+    const candidate = await User.findOne({ where: { email } });
 
     if (candidate) {
       return res
         .status(400)
-        .json('Пользователь с таким эмайлом уже сушествует');
+        .json("Пользователь с таким эмайлом уже сушествует");
     }
 
     const hash = await bcrypt.hash(password, 5);
-    const user = await userModel.User.create({ email, password: hash, role });
-    const basket = await userModel.Basket.create({ userId: user.id, products });
+    const user = await User.create({ email, password: hash, role });
+    const basket = await Basket.create({ userId: user.id, products });
 
     const payload = {
       id: user.id,
@@ -29,7 +30,7 @@ class UsersController {
     };
 
     const token = jwt.sign(payload, process.env.SECRET_KEY, {
-      expiresIn: '2d',
+      expiresIn: "2d",
     });
 
     return res.json({ token });
@@ -38,16 +39,16 @@ class UsersController {
   async login(req: any, res: any) {
     const { email, password } = req.body;
 
-    const user = await userModel.User.findOne({ where: { email } });
+    const user = await User.findOne({ where: { email } });
 
     if (!user) {
-      return res.status(401).json('Неправильный эмайл или пароль');
+      return res.status(401).json("Неправильный эмайл или пароль");
     }
 
     const compare = await bcrypt.compare(password, user.password);
 
     if (!compare) {
-      return res.status(401).json('Неправильный эмайл или пароль');
+      return res.status(401).json("Неправильный эмайл или пароль");
     }
 
     const payload = {
@@ -57,10 +58,14 @@ class UsersController {
     };
 
     const token = jwt.sign(payload, process.env.SECRET_KEY, {
-      expiresIn: '2d',
+      expiresIn: "2d",
     });
 
     return res.json({ token, payload });
+  }
+
+  async getUserById(req: any, res: any) {
+    const { id } = req.user;
   }
 
   async check(req: any, res: any, next: any) {
@@ -71,7 +76,7 @@ class UsersController {
     };
 
     const token = jwt.sign(payload, process.env.SECRET_KEY, {
-      expiresIn: '2d',
+      expiresIn: "2d",
     });
     return res.json({ token });
   }

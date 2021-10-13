@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router } from "express";
 const usersController = require('../controllers/users.controller');
 const authMiddleware = require('../middlewares/authMiddleware');
 
