@@ -6,6 +6,7 @@ const initialState = {
   role: null,
   token: null,
   isRegistered: false,
+  warning: null,
 };
 
 const user = (state: object = initialState, action: any) => {
@@ -23,6 +24,7 @@ const user = (state: object = initialState, action: any) => {
         signingUp: false,
         error: null,
         isRegistered: true,
+        warning: action.payload,
       };
     case 'user/registration/rejected':
       return {
@@ -80,7 +82,7 @@ export const registration = (data: any) => {
           },
           body: JSON.stringify({
             email: data.email,
-            password: data.password,
+            password: data.password
           }),
         }
       );

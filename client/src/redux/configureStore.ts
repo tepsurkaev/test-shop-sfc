@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import userReducer from './features/user.reducer';
-import productReducer from './features/product.reducer';
+import user from './features/user.reducer';
+import product from './features/product.reducer';
 
 const userToStorage = localStorage.getItem('user-reducer');
 const productToStorage = localStorage.getItem('product-reducer');
@@ -12,13 +12,8 @@ const preloadedStore = {
   product: productToStorage ? JSON.parse(productToStorage) : undefined,
 };
 
-const reducers = combineReducers({
-  user: userReducer,
-  product: productReducer,
-});
-
 export const store = createStore(
-  reducers,
+  combineReducers({ user, product }),
   preloadedStore,
   composeWithDevTools(applyMiddleware(thunk))
 );

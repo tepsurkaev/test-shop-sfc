@@ -1,20 +1,20 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import UnauthorizedHeader from './UnauthorizedHeader';
 import AuthorizedUser from './AuthorizedUser';
 import AuthorizedAdmin from './AuthorizedAdmin';
+import { useSelector } from 'react-redux';
 
-function Header() {
+export default function Header() {
   const role = useSelector((state) => state.user.role);
   const token = useSelector((state) => state.user.token);
 
-  if (role && role === 'user') {
+  if (token && role === 'user') {
     return (
       <div>
         <AuthorizedUser />
       </div>
     );
-  } else if (role && role === 'admin') {
+  } else if (token && role === 'admin') {
     return (
       <div>
         <AuthorizedAdmin />
@@ -28,5 +28,3 @@ function Header() {
     );
   }
 }
-
-export default Header;

@@ -9,6 +9,7 @@ import {
 import { makeStyles } from '@mui/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct, allProducts } from '../../redux/features/product.reducer';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 const useStyles = makeStyles((theme: any) => {
   return {
@@ -27,6 +28,7 @@ function NewProduct() {
 
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
+  const [file, setFile] = useState(null);
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -44,9 +46,7 @@ function NewProduct() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Добавить товар
-      </Button>
+      <AddCircleOutlineIcon onClick={handleClickOpen} />
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle style={{ textAlign: 'center' }}>Новый товар</DialogTitle>
         <DialogContent className={classes.form}>

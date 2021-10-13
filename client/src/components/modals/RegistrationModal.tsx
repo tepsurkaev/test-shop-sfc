@@ -5,9 +5,9 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
+  Typography,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import PersonIcon from '@mui/icons-material/Person';
 import { useDispatch, useSelector } from 'react-redux';
 import { registration, login } from '../../redux/features/user.reducer';
 
@@ -57,7 +57,7 @@ function RegistrationModal() {
   if (!isRegistered) {
     return (
       <div>
-        <PersonIcon fontSize="large" onClick={handleClickOpen} />
+        <Typography onClick={handleClickOpen}>Войти</Typography>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle className={classes.registrationTitle}>
             Регистрация
@@ -80,7 +80,7 @@ function RegistrationModal() {
             <Button
               variant="outlined"
               color="inherit"
-              onClick={() => isRegistered(setIsRegistered(true))}
+              onClick={() => setIsRegistered(true)}
             >
               У меня уже есть аккаунт
             </Button>
@@ -101,7 +101,7 @@ function RegistrationModal() {
   } else {
     return (
       <div>
-        <PersonIcon fontSize="large" onClick={handleClickOpen} />
+        <Typography onClick={handleClickOpen}>Войти</Typography>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle className={classes.registrationTitle}>
             Авторизация
@@ -122,7 +122,7 @@ function RegistrationModal() {
               variant="filled"
             />
             <Button
-              onClick={() => isRegistered(setIsRegistered(false))}
+              onClick={() => setIsRegistered(false)}
               variant="outlined"
               color="inherit"
             >

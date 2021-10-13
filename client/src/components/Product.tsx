@@ -18,7 +18,7 @@ function Products() {
     dispatch(allProducts());
   }, []);
 
-  const handleDeleteProduct = (id) => {
+  const handleDeleteProduct = (id: any) => {
     dispatch(deleteProduct(id));
   };
 
@@ -60,7 +60,11 @@ function Products() {
           </CardContent>
           <CardActions>
             <Button size="small">Изменить</Button>
-            <Button onClick={() => handleDeleteProduct(item.id)} color="warning" size="small">
+            <Button
+              onClick={() => handleDeleteProduct(item.id)}
+              color="warning"
+              size="small"
+            >
               Удалить
             </Button>
           </CardActions>

@@ -1,4 +1,4 @@
-const initialState = {
+const initialState: any = {
   items: [],
   loading: false,
   error: null,
@@ -36,10 +36,8 @@ const product = (state: object = initialState, action: any) => {
     case 'product/add/fulfilled':
       return {
         ...state,
+        items: [...state.items, action.payload],
         loading: false,
-        items: {
-          ...state.items.push(...action.payload),
-        },
       };
     case 'product/add/rejected':
       return {
